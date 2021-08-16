@@ -14,7 +14,7 @@ const Card: React.FC<Props> = ({ image, title, subtitle }) => {
         <Image src={`${image}`} alt={`${title}`} width="50" height="50" />
         <Stack spacing={0}>
           <Text fontSize="18px">{title}</Text>
-          <Text fontSize="14px" color="#3A83FA">{subtitle}</Text>
+          <Text fontSize="12px" color="#3A83FA">{subtitle}</Text>
         </Stack>
       </Stack>
   )

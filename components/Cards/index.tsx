@@ -1,4 +1,5 @@
 import { Container, Stack, Image, Center, Divider } from "@chakra-ui/react"
+import { useEffect, useState } from "react"
 
 import Card from "../Card"
 
@@ -9,7 +10,29 @@ const items = [
   { image: '/images/payment.svg', title: 'Efectivo', subtitle: 'Ver más' },
 ]
 
+interface Items {
+  image: String,
+  title: String,
+  subtitle: String
+}
+
 const Cards: React.FC = () => {
+  const [itemsToShow, setItemsToShow] = useState<Items[]>(items)
+
+  useEffect(() => {
+    const mediaQueries = {
+      sm: window.matchMedia('(max-width: 500px)'),
+      xs: window.matchMedia('(min-width: 501px) and (max-width: 1000px)'),
+    }
+    if (mediaQueries.sm.matches) {
+      setItemsToShow([items[0]])
+    } else if (mediaQueries.xs.matches) {
+      setItemsToShow([items[0], items[1]])
+    } else {
+      setItemsToShow(items)
+    }
+  }, [])
+
   return (
     <Container width="95%" maxW="container.xl" paddingY="40px" cursor="pointer">
         <Stack 
@@ -23,7 +46,7 @@ const Cards: React.FC = () => {
           borderRadius={4}
           boxShadow="0 1px 1px 0 rgb(0 0 0 / 10%)"
         >
-          {items.map((item, index) => (
+          {itemsToShow.map((item, index) => (
             <Card 
               key={index} 
               image={item.image} 

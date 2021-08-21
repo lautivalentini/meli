@@ -1,5 +1,5 @@
+Clon de funcionalidades y UI de Mercado Libre utilizando Next + Typescript y SSR
 ## Tecnologías utilizadas
 
-- Typescript
-- Next.js
+- Next + Typescript
 - SSR

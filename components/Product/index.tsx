@@ -1,18 +1,8 @@
 import { Stack, Box, Text } from "@chakra-ui/react"
 
-interface Product {
-  id: React.Key,
-  title: String,
-  thumbnail: String,
-  original_price: Number,
-  price: Number,
-  shipping: Shipping,
-}
+import ProductType from "../../types/Product"
 
-interface Shipping {
-  free_shipping: Boolean,
-  logistic_type: String,
-}
+import { fixPrice } from '../../utils/index'
 
 const Product = ({ 
   id, 
@@ -21,20 +11,31 @@ const Product = ({
   original_price,
   price,
   shipping,
-}: Product) => {
+}: ProductType) => {
+  
   return (
-    <Box bg="silver" maxW="280px" margin="10px 0">
+    <Box 
+      width="280px" 
+      height="440px" 
+      borderRadius="4px"
+      margin="10px"
+      backgroundColor="white"
+      boxShadow="0 1px 1px 0 rgb(0 0 0 / 10%), 0 -1px 2px 0 rgb(0 0 0 / 10%)"
+    >
       <Box 
         height="280px" 
         width="100%" 
         backgroundSize="contain" 
         backgroundImage={`url(${thumbnail})`}
         backgroundRepeat="no-repeat"
-        backgroundPosition="center"
-      ></Box>
-      <Stack>
-        <Text>{price}</Text>
-        <Text>{title}</Text>
+        backgroundPosition="top"
+      />
+      <Stack 
+        paddingX={6} 
+        paddingY={4}
+      >
+        <Text fontSize="24px" fontWeight="500">$ {fixPrice(price)}</Text>
+        <Text fontSize="14px">{title}</Text>
       </Stack>
     </Box>
   )

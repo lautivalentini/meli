@@ -1,38 +1,29 @@
+import { Box, Flex  } from "@chakra-ui/react"
 import { GetServerSideProps } from "next"
 
 import Product from "../components/Product"
 
-interface Products {
-  products: Item[]
-}
-
-interface Item {
-  id: React.Key,
-  title: String,
-  thumbnail: String,
-  original_price: Number,
-  price: Number,
-  shipping: Shipping,
-}
-
-interface Shipping {
-  free_shipping: Boolean,
-  logistic_type: String,
-}
+import Products from "../types/Products"
 
 const Search = ({ products }: Products) => {
   console.log(products)
-  return (products || []).map(product => {
-    const item = {
-      id: product.id,
-      title: product.title,
-      thumbnail: product.thumbnail,
-      original_price: product.original_price,
-      price: product.price,
-      shipping: product.shipping,
-    }
-    return <Product key={product.id} {...item} />
-  })
+  return (
+    <Box width="95%" maxW="container.xl" margin="auto">
+      <Flex spacing={0} direction="row" flexWrap="wrap" justifyContent="center">
+        {(products || []).map(product => {
+          const item = {
+            id: product.id,
+            title: product.title,
+            thumbnail: product.thumbnail,
+            original_price: product.original_price,
+            price: product.price,
+            shipping: product.shipping,
+          }
+          return <Product key={product.id} {...item} />
+        })}
+      </Flex>
+    </Box>
+  )
 }
 
 export default Search

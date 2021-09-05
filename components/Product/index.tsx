@@ -2,7 +2,7 @@ import { Stack, Box, Text } from "@chakra-ui/react"
 
 import ProductType from "../../types/Product"
 
-import { fixPrice } from '../../utils/index'
+import { formatPrice } from '../../utils/index'
 
 const Product = ({ 
   id, 
@@ -34,7 +34,7 @@ const Product = ({
         paddingX={6} 
         paddingY={4}
       >
-        <Text fontSize="24px" fontWeight="500">$ {fixPrice(price)}</Text>
+        <Text fontSize="24px" fontWeight="500">{formatPrice(price)}</Text>
         <Text fontSize="14px">{title}</Text>
       </Stack>
     </Box>
